@@ -1,0 +1,94 @@
+<%- include ../../components/header.ejs %>
+<%- include ../../components/navbar.ejs %>
+<%- include ../../components/sidebar.ejs %>
+
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Boucher</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+            <li class="breadcrumb-item active">Tambah</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Form tambah voucher</h3>
+            </div>
+            <form action="/voucher/create" method="POST" enctype="multipart/form-data">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">Nama voucher</label>
+                  <input type="text" class="form-control" id="name" placeholder="Nama game" name="name" required>
+                </div>   
+                <div class="form-group">
+                  <label>Kategori</label>
+                  <select class="form-control" name="category" style="width: 100%;">
+                    <% for(let i = 0; i < categories.length; i++) { %>
+                      <option value="<%= categories[i]._id %>"><%= categories[i].name %></option>  
+                    <% } %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Nominal</label>
+                  <div class="select2-purple">
+                    <select class="form-control select2" name="nominals" multiple style="width: 100%;" data-placeholder="Pilih nominal">
+                      <% for(let i = 0; i < nominals.length; i++) { %>
+                        <option value="<%= nominals[i]._id %>"><%= nominals[i].coinQuantity %> <%= nominals[i].coinName %> ( <%= nominals[i].price %> )</option>  
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                   
+                <div class="form-group">
+                  <label for="thumbnail">Thumbnail</label>
+                  <input type="file" class="form-control-file" id="thumbnail" placeholder="voucher thumbnail" name="thumbnail" required>
+                  <br>
+                  <img src="" id="preview">
+                </div>      
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include ../../components/footer.ejs %>
+<%- include ../../components/js.ejs %>
+
+<script>
+  $("#thumbnail").on('change', function(){
+    readUrl(this)
+  })
+
+  function readUrl(input) {
+    if(input.files && input.files[0]){
+      const reader = new FileReader();
+      reader.onload = function(e){
+        $("#preview").attr('src', e.target.result)
+        $("#preview").attr('width', '20%')
+        $("#preview").attr('height', '20%')
+      }
+
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+</script>

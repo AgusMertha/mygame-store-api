@@ -1,0 +1,52 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No</th>
+    <th>Nama Game</th>
+    <th>Kategori</th>
+    <th>Nominal</th>
+    <th>Thumbnail</th>
+    <th>Status</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < vouchers.length; i++) { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= vouchers[i].name %></td>
+        <td><%= vouchers[i]?.category?.name ?? '-' %></td>
+        <td>
+          <% vouchers[i].nominals.forEach(nominal => { %>
+            <span class="badge badge-warning">
+              <%= nominal.coinName %> <%= nominal.coinQuantity %>
+            </span>
+          <% }) %>
+        </td>
+        <td>
+          <img src="/uploads/<%= vouchers[i].thumbnail %>" class="img-thumbnail w-25">
+        </td>
+        <td>
+          <span class="badge badge-<%= vouchers[i].status == 'Y' ? 'success': 'danger'%>">
+            <%= vouchers[i].status == 'Y' ? 'Aktif': 'Tidak Aktif'%>
+          </span>
+        </td>
+        <td>
+          <form style="display: inline-block;" action="/voucher/edit-status/<%= vouchers[i]._id %>" method="POST">
+            <button class="btn btn-sm btn-primary" type="submit">
+              <i class="fas fa-folder"></i> <%= vouchers[i].status == 'Y' ? 'Matikan': 'Aktifkan'%>
+            </button>
+          </form>
+          <a href="/voucher/edit/<%= vouchers[i]._id %>" class="btn btn-sm btn-warning">
+            <i class="fas fa-pencil-alt"></i> Ubah
+          </a>
+          <form style="display: inline-block;" action="/voucher/delete/<%= vouchers[i]._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger" type="submit">
+              <i class="fas fa-trash-alt"></i> Hapus
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

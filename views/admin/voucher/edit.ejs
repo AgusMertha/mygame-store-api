@@ -32,7 +32,7 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="name">Nama voucher</label>
-                  <input type="text" class="form-control" id="name" placeholder="Nama game" name="name" required value="<%= voucher.name %>">
+                  <input type="text" class="form-control" id="name" placeholder="Nama game" name="name" value="<%= voucher.name %>">
                 </div>   
                 <div class="form-group">
                   <label>Kategori</label>
@@ -60,7 +60,7 @@
                    
                 <div class="form-group">
                   <label for="thumbnail">Thumbnail</label>
-                  <input type="file" class="form-control-file" id="thumbnail" placeholder="voucher thumbnail" name="thumbnail" required>
+                  <input type="file" class="form-control-file" id="thumbnail" placeholder="voucher thumbnail" name="thumbnail">
                   <br>
                   <img src="/uploads/<%= voucher.thumbnail %>" id="preview">
                 </div>      

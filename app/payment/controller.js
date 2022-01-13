@@ -12,6 +12,7 @@ module.exports = {
       const payments = await Payment.find().populate('banks')
 
       res.render('admin/payment/view_payment',{
+        name: req.session.user.name,
         payments,
         alert
       })

@@ -14,7 +14,7 @@
         <td><%= i+1 %></td>
         <td><%= banks[i].name %></td>
         <td><%= banks[i].bankName %></td>
-        <td><%= banks[i].bankAccount %></td>
+        <td><%= banks[i].noRekening %></td>
         <td>
           <form action="/bank/delete/<%= banks[i]._id %>?_method=DELETE" method="POST">
             <a href="/bank/edit/<%= banks[i]._id %>" class="btn btn-sm btn-warning">

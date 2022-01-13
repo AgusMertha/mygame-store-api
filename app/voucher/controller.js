@@ -15,6 +15,7 @@ module.exports = {
       const vouchers = await Voucher.find().populate('category').populate('nominals')
 
       res.render('admin/voucher/view_voucher', {
+        name: req.session.user.name,
         alert,
         vouchers
       })
@@ -110,6 +111,7 @@ module.exports = {
       const nominals = await Nominal.find()
 
       res.render('admin/voucher/edit', {
+        name: req.session.user.name,
         categories,
         nominals,
         voucher

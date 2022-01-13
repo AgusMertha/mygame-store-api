@@ -9,10 +9,10 @@ let bankSchema = mongoose.Schema({
     type: String,
     require: [true, 'Nama bank harus diisi']
   },
-  bankAccount: {
+  noRekening: {
     type: String,
     require: [true, 'Nomor rekening harus diisi']
   }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Bank', bankSchema)

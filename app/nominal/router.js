@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {index, viewCreate, postNominal, deleteNominal, viewEdit, updateNominal} = require('./controller')
+const {isLoginAdmin} = require('../middleware/auth')
 
+router.use(isLoginAdmin)
 router.get('/', index)
 router.get('/create', viewCreate)
 router.post('/create', postNominal)

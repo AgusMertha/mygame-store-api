@@ -31,6 +31,7 @@ module.exports = {
       const categories = await Category.find()
       const nominals = await Nominal.find()
       res.render('admin/voucher/create', {
+        name: req.session.user.name,
         categories,
         nominals
       })

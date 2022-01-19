@@ -26,7 +26,7 @@ module.exports = {
   viewCreate: async(req, res) => {
     try {
       const banks = await Bank.find()
-      res.render('admin/payment/create', {banks})
+      res.render('admin/payment/create', {banks, name: req.session.user.name,})
     } catch (error) {
       req.flash('alertMessage', error.message)
       req.flash('alertStatus', 'danger')
@@ -58,6 +58,7 @@ module.exports = {
       const banks = await Bank.find()
 
       res.render('admin/payment/edit', {
+        name: req.session.user.name,
         payment,
         banks
       })

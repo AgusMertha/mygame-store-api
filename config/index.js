@@ -6,5 +6,6 @@ dotenv.config()
 module.exports = {
   rootPath: path.resolve(__dirname, '..'),
   serviceName: process.env.SERVICE_NAME,
-  mongoUrl: process.env.MONGO_URL
+  mongoUrl: process.env.MONGO_URL,
+  jwtKey: process.env.JWT_SECRET
 }

@@ -29,6 +29,7 @@ module.exports = {
       const {id} = req.params
 
       const voucher = await Voucher.findOne({_id: id}).populate('category').populate('nominals').populate('user', '_id name phoneNumber')
+      const payments = await Payment.find().populate('banks')
 
       if(!voucher){
         res.status(404).json({
@@ -37,7 +38,10 @@ module.exports = {
       }
 
       res.status(200).json({
-        data: voucher
+        data: {
+          detail: voucher,
+          payments: payments
+        }
       })
     } catch (error) {
       res.status(500).json({
